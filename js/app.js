@@ -39,11 +39,11 @@ AddressBook.prototype.addContact = function(contact) {
 // User Interface Logic ---------
 let addressBook = new AddressBook();
 // function to display contact on browser
-function displayContactDetails(addressBookToDisplay) {
+function displayContactDetails(addressBookContact) {
   let contactsList = $("ul#contacts");
   let htmlForContactInfo = "";
-  Object.keys(addressBookToDisplay.contacts).forEach(function(key) {
-    const contact = addressBookToDisplay.findContact(key);
+  Object.keys(addressBookContact.contacts).forEach(function(key) {
+    const contact = addressBookContact.findContact(key);
     htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
   });
   contactsList.html(htmlForContactInfo);
@@ -83,11 +83,13 @@ $(document).ready(function() {
     const inputtedFirstName = $("input#new-first-name").val();
     const inputtedLastName = $("input#new-last-name").val();
     const inputtedPhoneNumber = $("input#new-phone-number").val();
+    const inputtedEmailAddress = $("#new-email-address").val();
 
     // to clear form after submission
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
+    $("#new-email-address").val();
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     addressBook.addContact(newContact);
     displayContactDetails(addressBook);
@@ -109,3 +111,4 @@ $(document).ready(function() {
 // Addressbook.prototype.findContact = function(name){
 //     return this
 // }
+
